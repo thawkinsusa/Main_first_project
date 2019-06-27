@@ -1,33 +1,57 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+
 }
 
-.App-link {
-  color: #61dafb;
+
+.header{
+  height: 10vh;
+  width: 100%;
+  background-color: rgba(5, 5, 36, 0);
+  position: fixed;
+  top: 0;
+  font-weight: bold;
+  font-size: 30pt;
+}
+body{
+  background-image: url("https://content.totalwar.com/total-war/com.totalwar.www2019/uploads/2019/03/08142154/3kfighters-e1552295714301.png");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  background-size: 90%;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.char-list {
+  width: 300px;
+  height: 600px;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.form{
+  width: 300px;
+  height: 600px;
+  background-color: rgb(209, 0, 174);
+}
+.img-holder-one{
+display: flex;
+align-content: center;
+align-items:  center;
+}
+.img-one-background{
+  border-radius: 50px;
+  background: rgba(0, 0, 0, 0.856);
+  padding: 20px; 
+  width: 260px;
+}
+.img-one{
+    border-radius: 50%;
+}
+.char-info{
+  border-radius: 10%;
+  background-color: rgba(255, 0, 0, 0.568);
+
 }

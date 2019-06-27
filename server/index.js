@@ -1,5 +1,5 @@
 const express = require('express')
-require('dotenv').config({path:__dirname + '/../env'})
+require('dotenv').config({ path: __dirname + '/../env' })
 const app = express()
 const mainCtrl = require('./controller/mainController')
 
@@ -13,7 +13,7 @@ app.put('/app/charactersTwo:id', mainCtrl.updateNameTwo)
 
 
 
-const{
+const {
     SERVER_PORT
 } = process.env;
 

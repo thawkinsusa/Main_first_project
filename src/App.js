@@ -10,8 +10,8 @@ class App extends Component {
     super()
     this.state = {
       characters: [],
-      charactersTwo:[],
-      
+      charactersTwo: [],
+
       i: 0,
       iTwo: 0
 
@@ -29,17 +29,17 @@ class App extends Component {
       .then(res => {
         console.log('res', res)
         this.setState({ characters: res.data })
-        this.setState({charactersTwo: res.data})
+        this.setState({ charactersTwo: res.data })
       })
-    
+
       .catch(err => console.log('err', err))
   }
 
   editHeroTwo = (updatedCharacter, id) => {
-    let {name, attack, health, armor} = updatedCharacter
-    axios 
+    let { name, attack, health, armor } = updatedCharacter
+    axios
       // grab newRating off of controller
-      .put(`/api/chars/${id}`, {name, attack, health, armor})
+      .put(`/api/chars/${id}`, { name, attack, health, armor })
       .then(res => {
         this.setState = ({ charactersTwo: res.data })
       })
@@ -49,7 +49,7 @@ class App extends Component {
   handleNext() {
     if (this.state.i < 3) {
       this.setState({ i: this.state.i + 1 });
-    } else if (this.state.i = 4 ) {
+    } else if (this.state.i = 4) {
       this.setState({ i: 0 })
     }
   }
@@ -64,7 +64,7 @@ class App extends Component {
   handleNextTwo() {
     if (this.state.iTwo < 3) {
       this.setState({ iTwo: this.state.iTwo + 1 });
-    } else if (this.state.iTwo = 4 ) {
+    } else if (this.state.iTwo = 4) {
       this.setState({ iTwo: 0 })
     }
   }
@@ -81,15 +81,15 @@ class App extends Component {
     return (
       <div>
 
-      <div className="App">
-        <Header />
-        <CharDisplayPrimary charactersTwo={this.state.charactersTwo}  iTwo={this.state.iTwo} handleNextTwo={this.handleNextTwo} handlePrevTwo={this.handlePrevTwo} editHeroTwo={this.editHeroTwo} />
-        <CharDisplaySecondary characters={this.state.characters} handleNext={this.handleNext} handlePrev={this.handlePrev} i={this.state.i}/>
-      </div>
-      
-      <body>
+        <div className="App">
+          <Header />
+          <CharDisplayPrimary charactersTwo={this.state.charactersTwo} iTwo={this.state.iTwo} handleNextTwo={this.handleNextTwo} handlePrevTwo={this.handlePrevTwo} editHeroTwo={this.editHeroTwo} />
+          <CharDisplaySecondary characters={this.state.characters} handleNext={this.handleNext} handlePrev={this.handlePrev} i={this.state.i} />
+        </div>
 
-      </body>
+        <body>
+
+        </body>
       </div>
     );
   }

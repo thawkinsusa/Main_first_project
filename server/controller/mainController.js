@@ -110,8 +110,8 @@ module.exports = {
 
     updateNameTwo(req, res) {
 
-        let {id} = req.params;
-        let {name, health, attack, armor} = req.body
+        let { id } = req.params;
+        let { name, health, attack, armor } = req.body
 
         let updatedCharacter = {
             name,
@@ -120,12 +120,12 @@ module.exports = {
             armor
         }
 
-        let index = charactersTwo.findIndex( hero => hero.id === +id)
+        let index = charactersTwo.findIndex(hero => hero.id === +id)
 
-        charactersTwo[index] = {...charactersTwo[index], ...updatedCharacter}
+        charactersTwo[index] = { ...charactersTwo[index], ...updatedCharacter }
 
 
         res.status(200).send(charactersTwo)
- 
+
     },
 }

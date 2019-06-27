@@ -15,7 +15,7 @@ class CharDisplayPrimary extends Component {
     };
 
     componentDidUpdate(prevProps) {
-        if(prevProps.charactersTwo[this.props.iTwo] !== this.props.charactersTwo[this.props.iTwo]) {
+        if (prevProps.charactersTwo[this.props.iTwo] !== this.props.charactersTwo[this.props.iTwo]) {
             this.setState({
                 imgSrcTwo: this.props.charactersTwo[this.props.iTwo].image,
                 armorTwo: this.props.charactersTwo[this.props.iTwo].armor,
@@ -46,7 +46,7 @@ class CharDisplayPrimary extends Component {
     render() {
 
         let { editing } = this.state
-        console.log(this.props.charactersTwo)
+        console.log('hello', this.props.charactersTwo, this.props.iTwo)
         // console.log(this.props.charactersTwo)   
         return (
 
@@ -55,36 +55,36 @@ class CharDisplayPrimary extends Component {
                 </div>
                 <div className='img-holder-hero-one'>
                     <div className='img-one-background'>
-                        <img className='img-one' width="250px" src={this.state.imgSrcTwo} alt='' />
+                        <img className='img-one' width="250px" src={this.props.charactersTwo[0] && this.props.charactersTwo[this.props.iTwo].image} alt='' />
                         <div className='char-info'>
                             {editing
                                 ?
                                 <div>
-                                <input value={this.state.nameTwo} onChange={this.handleChange} name="nameTwo" />
-                                <input value={this.state.damageTwo} onChange={this.handleChange} name="damageTwo" />
-                                <input value={this.state.healthTwo} onChange={this.handleChange} name="healthTwo" />
-                                <input value={this.state.armorTwo} onChange={this.handleChange} name="armorTwo" />
+                                    <input value={this.state.nameTwo} onChange={this.handleChange} name="nameTwo" />
+                                    <input value={this.state.damageTwo} onChange={this.handleChange} name="damageTwo" />
+                                    <input value={this.state.healthTwo} onChange={this.handleChange} name="healthTwo" />
+                                    <input value={this.state.armorTwo} onChange={this.handleChange} name="armorTwo" />
                                 </div>
 
                                 :
                                 <div>
-                                 <p> Hero: {this.state.nameTwo} </p>
-                                 <p className='health'>Health: {this.state.healthTwo}</p>
-                                 <p className='damage'>Damage{this.state.damageTwo}</p>
-                                 <p className='armor'>armor: {this.state.armorTwo}</p>
-                                 </div>
-                                 }
-                            
-                                 
+                                    <p> Hero: {this.props.charactersTwo[0] && this.props.charactersTwo[this.props.iTwo].name} </p>
+                                    <p className='health'>Health: {this.props.charactersTwo[0] && this.props.charactersTwo[this.props.iTwo].health}</p>
+                                    <p className='damage'>Damage{this.props.charactersTwo[0] && this.props.charactersTwo[this.props.iTwo].attack}</p>
+                                    <p className='armor'>armor: {this.props.charactersTwo[0] && this.props.charactersTwo[this.props.iTwo].armor}</p>
+                                </div>
+                            }
+
+
                             {editing
                                 ? (<button onClick={this.saveChanges}>save changes</button>)
                                 :
                                 (<button onClick={this.edit}> Edit </button>)}
-                           
-                            <div className='buttons'>
                                 <button onClick={() => this.props.handlePrevTwo()} className='nav-buttons'> {`< Prev`} </button>
                                 <button className='center-buttons'> Delete </button>
                                 <button onClick={() => this.props.handleNextTwo()} className='nav-buttons'> {`Next > `} </button>
+                            <div className='buttons'>
+
                             </div>
                         </div>
                     </div>

@@ -6,7 +6,7 @@ const mainCtrl = require('./controller/mainController')
 app.get('/api/char', mainCtrl.characters)
 app.get('/api/charactersTwo', mainCtrl.charactersTwo)
 // app.put('/app/characters'), mainCtrl.characters
-app.put('/app/charactersTwo:heroes', mainCtrl.updateNameTwo)
+app.put('/app/charactersTwo:id', mainCtrl.updateNameTwo)
 
 
 

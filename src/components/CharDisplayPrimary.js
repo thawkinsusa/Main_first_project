@@ -1,17 +1,33 @@
 import React, { Component } from 'react'
 
 
-class Form extends Component {
+class CharDisplayPrimary extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            editing: false
+            editing: false,
+            imgSrcTwo: this.props.charactersTwo[this.props.iTwo] ? this.props.charactersTwo[this.props.iTwo].image : '',
+            armorTwo: this.props.charactersTwo[this.props.iTwo] ? this.props.charactersTwo[this.props.iTwo].armor : '',
+            healthTwo: this.props.charactersTwo[this.props.iTwo] ? this.props.charactersTwo[this.props.iTwo].health : '',
+            damageTwo: this.props.charactersTwo[this.props.iTwo] ? this.props.charactersTwo[this.props.iTwo].attack : '',
+            nameTwo: this.props.charactersTwo[this.props.iTwo] ? this.props.charactersTwo[this.props.iTwo].name : ''
         }
     };
 
+    componentDidUpdate(prevProps) {
+        if(prevProps.charactersTwo[this.props.iTwo] !== this.props.charactersTwo[this.props.iTwo]) {
+            this.setState({
+                imgSrcTwo: this.props.charactersTwo[this.props.iTwo].image,
+                armorTwo: this.props.charactersTwo[this.props.iTwo].armor,
+                healthTwo: this.props.charactersTwo[this.props.iTwo].health,
+                damageTwo: this.props.charactersTwo[this.props.iTwo].attack,
+                nameTwo: this.props.charactersTwo[this.props.iTwo].name,
+            })
+        }
+    }
+
     edit = () => {
         this.setState({ editing: !this.state.editing });
-        this.props.editHeroesTwo(this.state.heroes, this.props.charactersTwo.heroes);
     };
 
     saveChanges = () => {
@@ -19,8 +35,8 @@ class Form extends Component {
     };
 
     handleChange = e => {
-        let { heroes, value } = e.target
-        this.setState({ [heroes]: value })
+        let { name, value } = e.target
+        this.setState({ [name]: value })
     };
 
 
@@ -30,11 +46,6 @@ class Form extends Component {
     render() {
 
         let { editing } = this.state
-        const imgSrcTwo = this.props.charactersTwo[this.props.iTwo] ? this.props.charactersTwo[this.props.iTwo].image : null
-        const armorTwo = this.props.charactersTwo[this.props.iTwo] ? this.props.charactersTwo[this.props.iTwo].armor : null
-        const nameTwo = this.props.charactersTwo[this.props.iTwo] ? this.props.charactersTwo[this.props.iTwo].heroes : null
-        const healthTwo = this.props.charactersTwo[this.props.iTwo] ? this.props.charactersTwo[this.props.iTwo].health : null
-        const damageTwo = this.props.charactersTwo[this.props.iTwo] ? this.props.charactersTwo[this.props.iTwo].attack : null
         console.log(this.props.charactersTwo)
         // console.log(this.props.charactersTwo)   
         return (
@@ -44,22 +55,34 @@ class Form extends Component {
                 </div>
                 <div className='img-holder-hero-one'>
                     <div className='img-one-background'>
-                        <img className='img-one' width="250px" src={imgSrcTwo} alt='' />
+                        <img className='img-one' width="250px" src={this.state.imgSrcTwo} alt='' />
                         <div className='char-info'>
                             {editing
                                 ?
-                                <input value={nameTwo} onChange={this.handleChange} name="name" />
+                                <div>
+                                <input value={this.state.nameTwo} onChange={this.handleChange} name="nameTwo" />
+                                <input value={this.state.damageTwo} onChange={this.handleChange} name="damageTwo" />
+                                <input value={this.state.healthTwo} onChange={this.handleChange} name="healthTwo" />
+                                <input value={this.state.armorTwo} onChange={this.handleChange} name="armorTwo" />
+                                </div>
+
                                 :
-                                <p> Hero: {nameTwo} </p>}
+                                <div>
+                                 <p> Hero: {this.state.nameTwo} </p>
+                                 <p className='health'>Health: {this.state.healthTwo}</p>
+                                 <p className='damage'>Damage{this.state.damageTwo}</p>
+                                 <p className='armor'>armor: {this.state.armorTwo}</p>
+                                 </div>
+                                 }
+                            
+                                 
                             {editing
                                 ? (<button onClick={this.saveChanges}>save changes</button>)
                                 :
                                 (<button onClick={this.edit}> Edit </button>)}
-                            <p className='health'>Health: {healthTwo}</p>
-                            <p className='dammage'>Damage{damageTwo}</p>
-                            <p className='armor'>armor: {armorTwo}</p>
+                           
                             <div className='buttons'>
-                                <button onClick={() => this.handlePrevTwo()} className='nav-buttons'> {`< Prev`} </button>
+                                <button onClick={() => this.props.handlePrevTwo()} className='nav-buttons'> {`< Prev`} </button>
                                 <button className='center-buttons'> Delete </button>
                                 <button onClick={() => this.props.handleNextTwo()} className='nav-buttons'> {`Next > `} </button>
                             </div>
@@ -71,4 +94,4 @@ class Form extends Component {
     }
 }
 
-export default Form
+export default CharDisplayPrimary

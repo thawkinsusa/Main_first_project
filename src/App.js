@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header'
-import Form from './components/CharDisplayPrimary'
+import CharDisplayPrimary from './components/CharDisplayPrimary'
 import CharDisplaySecondary from './components/CharDisplaySecondary';
 
 import axios from 'axios';
@@ -35,10 +35,11 @@ class App extends Component {
       .catch(err => console.log('err', err))
   }
 
-  editHeroesTwo = (name, heroes) => {
-    axios
+  editHeroTwo = (updatedCharacter, id) => {
+    let {name, attack, health, armor} = updatedCharacter
+    axios 
       // grab newRating off of controller
-      .put(`/api/chars/${heroes}?newRating${name}`)
+      .put(`/api/chars/${id}`, {name, attack, health, armor})
       .then(res => {
         this.setState = ({ charactersTwo: res.data })
       })
@@ -49,30 +50,30 @@ class App extends Component {
     if (this.state.i < 3) {
       this.setState({ i: this.state.i + 1 });
     } else if (this.state.i = 4 ) {
-      this.setState({ i: this.state.i = 0 })
+      this.setState({ i: 0 })
     }
   }
 
   handlePrev() {
     if (this.state.i > 0) {
       this.setState({ i: this.state.i - 1 });
-    } else if (this.state.i === -1) {
-      this.setState({ i: this.state.i = 0 })
+    } else if (this.state.i === 0) {
+      this.setState({ i: 3 })
     }
   }
   handleNextTwo() {
     if (this.state.iTwo < 3) {
       this.setState({ iTwo: this.state.iTwo + 1 });
     } else if (this.state.iTwo = 4 ) {
-      this.setState({ iTwo: this.state.iTwo = 0 })
+      this.setState({ iTwo: 0 })
     }
   }
 
   handlePrevTwo() {
     if (this.state.iTwo > 0) {
       this.setState({ iTwo: this.state.iTwo - 1 });
-    } else if (this.state.iTwo === -1) {
-      this.setState({ iTwo: this.state.iTwo = 0 })
+    } else if (this.state.iTwo === 0) {
+      this.setState({ iTwo: 3 })
     }
   }
 
@@ -82,7 +83,7 @@ class App extends Component {
 
       <div className="App">
         <Header />
-        <Form charactersTwo={this.state.charactersTwo}  iTwo={this.state.iTwo} handleNextTwo={this.handleNextTwo} handlePrevTwo={this.handlePrevTwo} editHeroesTwo={this.editHeroesTwo} />
+        <CharDisplayPrimary charactersTwo={this.state.charactersTwo}  iTwo={this.state.iTwo} handleNextTwo={this.handleNextTwo} handlePrevTwo={this.handlePrevTwo} editHeroTwo={this.editHeroTwo} />
         <CharDisplaySecondary characters={this.state.characters} handleNext={this.handleNext} handlePrev={this.handlePrev} i={this.state.i}/>
       </div>
       

@@ -128,4 +128,15 @@ module.exports = {
         res.status(200).send(charactersTwo)
 
     },
+    deleteHero(req, res) {
+        // need to pull off an id
+        let {id} = req.params
+        // search array to find specified dog loops through array to find the given index (id) index and where they found it
+        // must add + to turn it into a number
+        let index = charactersTwo.findIndex(hero => hero.id === +id)
+        // make sure that it finds the item aka index is not -1 && take out if true
+        index !== -1 && charactersTwo.splice(index.id,1)
+        res.status(200).send(charactersTwo)
+    }
 }
+

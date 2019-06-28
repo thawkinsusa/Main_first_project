@@ -21,6 +21,7 @@ class App extends Component {
     this.handleNext = this.handleNext.bind(this);
     this.handlePrevTwo = this.handlePrevTwo.bind(this);
     this.handleNextTwo = this.handleNextTwo.bind(this);
+    this.deleteHero = this.deleteHero.bind(this)
   }
 
   componentDidMount() {
@@ -42,6 +43,17 @@ class App extends Component {
       .put(`/api/chars/${id}`, { name, attack, health, armor })
       .then(res => {
         this.setState = ({ charactersTwo: res.data })
+      })
+  };
+
+  deleteHero = id => {
+    axios
+      .delete(`/api/charactersTwo/${id}`)
+      .then(res => {
+        console.log('res', res);
+        this.setState({ charactersTwo: res.data })
+          ;
+
       })
   };
 
@@ -83,8 +95,8 @@ class App extends Component {
 
         <div className="App">
           <Header />
-          <CharDisplayPrimary charactersTwo={this.state.charactersTwo} iTwo={this.state.iTwo} handleNextTwo={this.handleNextTwo} handlePrevTwo={this.handlePrevTwo} editHeroTwo={this.editHeroTwo} />
-          <CharDisplaySecondary characters={this.state.characters} handleNext={this.handleNext} handlePrev={this.handlePrev} i={this.state.i} />
+          <CharDisplayPrimary  deleteHero={this.deleteHero} charactersTwo={this.state.charactersTwo} iTwo={this.state.iTwo} handleNextTwo={this.handleNextTwo} handlePrevTwo={this.handlePrevTwo} editHeroTwo={this.editHeroTwo} />
+          <CharDisplaySecondary deleteHero={this.deleteHero} characters={this.state.characters} handleNext={this.handleNext} handlePrev={this.handlePrev} i={this.state.i} />
         </div>
 
         <body>

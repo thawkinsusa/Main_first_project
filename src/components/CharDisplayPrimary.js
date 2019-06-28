@@ -44,7 +44,7 @@ class CharDisplayPrimary extends Component {
 
 
     render() {
-
+        let {charactersTwo} = this.props
         let { editing } = this.state
         console.log('hello', this.props.charactersTwo, this.props.iTwo)
         // console.log(this.props.charactersTwo)   
@@ -81,7 +81,7 @@ class CharDisplayPrimary extends Component {
                                 :
                                 (<button onClick={this.edit}> Edit </button>)}
                                 <button onClick={() => this.props.handlePrevTwo()} className='nav-buttons'> {`< Prev`} </button>
-                                <button className='center-buttons'> Delete </button>
+                                {/* <button className='center-buttons' onClick={(e)=> this.props.deleteHero(this.props.charactersTwo[this.props.iTwo].id)}> {`Delete`} </button> */}
                                 <button onClick={() => this.props.handleNextTwo()} className='nav-buttons'> {`Next > `} </button>
                             <div className='buttons'>
 

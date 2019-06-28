@@ -6,8 +6,8 @@ const mainCtrl = require('./controller/mainController')
 app.get('/api/char', mainCtrl.characters)
 app.get('/api/charactersTwo', mainCtrl.charactersTwo)
 // app.put('/app/characters'), mainCtrl.characters
-app.put('/app/charactersTwo:id', mainCtrl.updateNameTwo)
-
+app.put('/api/characters/:id', mainCtrl.updateNameTwo)
+app.delete('/api/charactersTwo/:id', mainCtrl.deleteHero)
 
 
 

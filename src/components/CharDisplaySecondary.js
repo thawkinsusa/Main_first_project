@@ -29,8 +29,8 @@ class CharDisplaySecondary extends Component {
                             <div className='buttons'>
                                 <button onClick={() => this.props.handlePrev()} className='nav-buttons'> {`< Prev`} </button>
                                 <button className='center-buttons'> Edit </button>
-                                <button className='center-buttons'> Delete </button>
-                                <button onClick={() => this.props.handleNext()} className='nav-buttons'> {`Next > `} </button>
+                                <button className='center-buttons' onClick={()=> this.props.deleteHero()}> {`Delete`} </button>
+                                <button onClick={(e) => this.Pay.handleNext()} className='nav-buttons'> {`Next > `} </button>
                             </div>
                         </div>
                     </div>

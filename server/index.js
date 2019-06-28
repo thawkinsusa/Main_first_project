@@ -3,6 +3,8 @@ require('dotenv').config({ path: __dirname + '/../env' })
 const app = express()
 const mainCtrl = require('./controller/mainController')
 
+app.use(express.json())
+
 app.get('/api/char', mainCtrl.characters)
 app.get('/api/charactersTwo', mainCtrl.charactersTwo)
 // app.put('/app/characters'), mainCtrl.characters

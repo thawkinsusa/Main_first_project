@@ -31,6 +31,16 @@ class CharDisplayPrimary extends Component {
     };
 
     saveChanges = () => {
+        let {imgSrcTwo, armorTwo, healthTwo, damageTwo, nameTwo} = this.state
+        let updateCharacter={
+            image: imgSrcTwo,
+            armor: armorTwo,
+            health: healthTwo,
+            damage:damageTwo,
+            name: nameTwo
+            
+        }
+        this.props.editHeroTwo(updateCharacter, this.props.charactersTwo[this.props.iTwo].id) 
         this.edit();
     };
 
@@ -46,12 +56,12 @@ class CharDisplayPrimary extends Component {
     render() {
         let {charactersTwo} = this.props
         let { editing } = this.state
-        console.log('hello', this.props.charactersTwo, this.props.iTwo)
+        console.log('hello', this.props.iTwo)
         // console.log(this.props.charactersTwo)   
         return (
 
             <div className="char-list">
-                <div id="slide-num">Hero {`${this.props.iTwo + 1}/4`}
+                <div id="slide-num">Hero {`${this.props.iTwo + 1}/${charactersTwo.length}`}
                 </div>
                 <div className='img-holder-hero-one'>
                     <div className='img-one-background'>
@@ -81,7 +91,7 @@ class CharDisplayPrimary extends Component {
                                 :
                                 (<button onClick={this.edit}> Edit </button>)}
                                 <button onClick={() => this.props.handlePrevTwo()} className='nav-buttons'> {`< Prev`} </button>
-                                {/* <button className='center-buttons' onClick={(e)=> this.props.deleteHero(this.props.charactersTwo[this.props.iTwo].id)}> {`Delete`} </button> */}
+                                <button className='center-buttons' onClick={(e)=> this.props.deleteHero(this.props.charactersTwo[this.props.iTwo].id)}> {`Delete`} </button>
                                 <button onClick={() => this.props.handleNextTwo()} className='nav-buttons'> {`Next > `} </button>
                             <div className='buttons'>
 

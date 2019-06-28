@@ -3,34 +3,96 @@ import React, { Component } from 'react'
 class CharDisplaySecondary extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            editing: false,
+            imgSrc: this.props.characters[this.props.i] ? this.props.characters[this.props.i].image : '',
+            armor: this.props.characters[this.props.i] ? this.props.characters[this.props.i].armor : '',
+            health: this.props.characters[this.props.i] ? this.props.characters[this.props.i].health : '',
+            damage: this.props.characters[this.props.i] ? this.props.characters[this.props.i].attack : '',
+            name: this.props.characters[this.props.i] ? this.props.characters[this.props.i].name : ''
+        }
+    };
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.characters[this.props.i] !== this.props.characters[this.props.i]) {
+            this.setState({
+                imgSrcTwo: this.props.characters[this.props.i].image,
+                armorTwo: this.props.characters[this.props.i].armor,
+                healthTwo: this.props.characters[this.props.i].health,
+                damageTwo: this.props.characters[this.props.i].attack,
+                nameTwo: this.props.characters[this.props.i].name,
+            })
+        }
     }
 
+    edit = () => {
+        this.setState({ editing: !this.state.editing });
+    };
+
+    saveChanges = () => {
+        let {imgSrc, armor, health, damage, name} = this.state
+        let updatecharacters={
+            image: imgSrc,
+            armor: armor,
+            health: health,
+            damage:damage,
+            name: name
+            
+        }
+        this.props.editHeroTwo(updatecharacters, this.props.characters[this.props.i].id) 
+        this.edit();
+    };
+
+    handleChange = e => {
+        let { name, value } = e.target
+        this.setState({ [name]: value })
+    };
+
+
+
+
+
     render() {
-        const imgSrc = this.props.characters[this.props.i] ? this.props.characters[this.props.i].image : null
-        const armor = this.props.characters[this.props.i] ? this.props.characters[this.props.i].armor : null
-        const name = this.props.characters[this.props.i] ? this.props.characters[this.props.i].name : null
-        const health = this.props.characters[this.props.i] ? this.props.characters[this.props.i].health : null
-        const damage = this.props.characters[this.props.i] ? this.props.characters[this.props.i].attack : null
-        console.log(this.props.characters)
+        let {characters} = this.props
+        let { editing } = this.state
+        console.log('hello', this.props.i)
         // console.log(this.props.characters)   
         return (
 
             <div className="char-list">
-                <div id="slide-num"> Hero {`${this.props.i + 1}/4`}
+                <div id="slide-num">Hero {`${this.props.i + 1}/${characters.length}`}
                 </div>
                 <div className='img-holder-hero-one'>
                     <div className='img-one-background'>
-                        <img className='img-one' width="250px" src={imgSrc} alt='' />
+                        <img className='img-one' width="250px" src={this.props.characters[0] && this.props.characters[this.props.i].image} alt='' />
                         <div className='char-info'>
-                            <p className='name'>Hero: {name}</p>
-                            <p className='health'>Health: {health}</p>
-                            <p className='dammage'>Damage{damage}</p>
-                            <p className='armor'>armor: {armor}</p>
-                            <div className='buttons'>
+                            {editing
+                                ?
+                                <div>
+                                    <input value={this.state.name} onChange={this.handleChange} name="name" />
+                                    <input value={this.state.damage} onChange={this.handleChange} name="damage" />
+                                    <input value={this.state.health} onChange={this.handleChange} name="health" />
+                                    <input value={this.state.armor} onChange={this.handleChange} name="armor" />
+                                </div>
+
+                                :
+                                <div>
+                                    <p> Hero: {this.props.characters[0] && this.props.characters[this.props.i].name} </p>
+                                    <p className='health'>Health: {this.props.characters[0] && this.props.characters[this.props.i].health}</p>
+                                    <p className='damage'>Damage{this.props.characters[0] && this.props.characters[this.props.i].attack}</p>
+                                    <p className='armor'>armor: {this.props.characters[0] && this.props.characters[this.props.i].armor}</p>
+                                </div>
+                            }
+
+
+                            {editing
+                                ? (<button onClick={this.saveChanges}>save changes</button>)
+                                :
+                                (<button onClick={this.edit}> Edit </button>)}
                                 <button onClick={() => this.props.handlePrev()} className='nav-buttons'> {`< Prev`} </button>
-                                <button className='center-buttons'> Edit </button>
-                                <button className='center-buttons' onClick={()=> this.props.deleteHero()}> {`Delete`} </button>
-                                <button onClick={(e) => this.Pay.handleNext()} className='nav-buttons'> {`Next > `} </button>
+                                <button onClick={() => this.props.handleNext()} className='nav-buttons'> {`Next > `} </button>
+                            <div className='buttons'>
+
                             </div>
                         </div>
                     </div>

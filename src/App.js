@@ -29,8 +29,8 @@ class App extends Component {
       .get('/api/char', '/api/charactersTwo')
       .then(res => {
         console.log('res', res)
-        this.setState({ characters: res.data })
-        this.setState({ charactersTwo: res.data })
+        this.setState({ characters: res.data.characters })
+        this.setState({ charactersTwo: res.data.charactersTwo })
       })
 
       .catch(err => console.log('err', err))
@@ -40,11 +40,13 @@ class App extends Component {
     let { name, attack, health, armor } = updatedCharacter
     axios
       // grab newRating off of controller
-      .put(`/api/chars/${id}`, { name, attack, health, armor })
+      .put(`/api/characters/${id}`, { name, attack, health, armor })
       .then(res => {
         this.setState = ({ charactersTwo: res.data })
       })
   };
+ 
+
 
   deleteHero = id => {
     axios
@@ -59,33 +61,33 @@ class App extends Component {
 
 
   handleNext() {
-    if (this.state.i < 3) {
+    if (this.state.i < (this.state.characters.length -1)) {
       this.setState({ i: this.state.i + 1 });
-    } else if (this.state.i = 4) {
+    } else if (this.state.i === this.state.characters.length -1) {
       this.setState({ i: 0 })
     }
   }
 
   handlePrev() {
-    if (this.state.i > 0) {
-      this.setState({ i: this.state.i - 1 });
-    } else if (this.state.i === 0) {
-      this.setState({ i: 3 })
+    if (this.state.iTwo > 0)  {
+      this.setState({ iTwo: this.state.iTwo - 1 });
+    } else if (this.state.iTwo === 0) {
+      this.setState({ iTwo: this.state.charactersTwo.length -1 })
     }
   }
   handleNextTwo() {
-    if (this.state.iTwo < 3) {
-      this.setState({ iTwo: this.state.iTwo + 1 });
-    } else if (this.state.iTwo = 4) {
-      this.setState({ iTwo: 0 })
+    if (this.state.i < (this.state.characters.length -1)) {
+      this.setState({ i: this.state.i + 1 });
+    } else if (this.state.i === this.state.characters.length -1) {
+      this.setState({ i: 0 })
     }
   }
 
   handlePrevTwo() {
-    if (this.state.iTwo > 0) {
+    if (this.state.iTwo > 0)  {
       this.setState({ iTwo: this.state.iTwo - 1 });
     } else if (this.state.iTwo === 0) {
-      this.setState({ iTwo: 3 })
+      this.setState({ iTwo: this.state.charactersTwo.length -1 })
     }
   }
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-
 class CharDisplayPrimary extends Component {
     constructor(props) {
         super(props);
@@ -49,6 +48,16 @@ class CharDisplayPrimary extends Component {
         this.setState({ [name]: value })
     };
 
+    attack() {
+
+        let attack = this.props.charactersTwo[this.props.iTwo].attack
+        console.log('DAMAGE', {attack})
+        let health = document.getElementById("health-enemy")
+        health.value -= attack
+
+
+    }
+
 
 
 
@@ -66,6 +75,7 @@ class CharDisplayPrimary extends Component {
                 <div className='img-holder-hero-one'>
                     <div className='img-one-background'>
                         <img className='img-one' width="250px" src={this.props.charactersTwo[0] && this.props.charactersTwo[this.props.iTwo].image} alt='' />
+                        <progress id="health" value={this.props.charactersTwo[0] && this.props.charactersTwo[this.props.iTwo].health} max="100"></progress>
                         <div className='char-info'>
                             {editing
                                 ?
@@ -93,6 +103,7 @@ class CharDisplayPrimary extends Component {
                                 <button onClick={() => this.props.handlePrevTwo()} className='nav-buttons'> {`< Prev`} </button>
                                 <button className='center-buttons' onClick={(e)=> this.props.deleteHero(this.props.charactersTwo[this.props.iTwo].id)}> {`Delete`} </button>
                                 <button onClick={() => this.props.handleNextTwo()} className='nav-buttons'> {`Next > `} </button>
+                                <button onClick={() => this.attack()}>attack</button>
                             <div className='buttons'>
 
                             </div>

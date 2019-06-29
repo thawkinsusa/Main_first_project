@@ -51,7 +51,6 @@ class CharDisplaySecondary extends Component {
 
 
 
-
     render() {
         let {characters} = this.props
         let { editing } = this.state
@@ -65,6 +64,7 @@ class CharDisplaySecondary extends Component {
                 <div className='img-holder-hero-one'>
                     <div className='img-one-background'>
                         <img className='img-one' width="250px" src={this.props.characters[0] && this.props.characters[this.props.i].image} alt='' />
+                        <progress id="health-enemy" value={this.props.characters[0] && this.props.characters[this.props.i].health} max={this.props.characters[0] && this.props.characters[this.props.i].health}></progress>
                         <div className='char-info'>
                             {editing
                                 ?
@@ -91,6 +91,7 @@ class CharDisplaySecondary extends Component {
                                 (<button onClick={this.edit}> Edit </button>)}
                                 <button onClick={() => this.props.handlePrev()} className='nav-buttons'> {`< Prev`} </button>
                                 <button onClick={() => this.props.handleNext()} className='nav-buttons'> {`Next > `} </button>
+                                
                             <div className='buttons'>
 
                             </div>

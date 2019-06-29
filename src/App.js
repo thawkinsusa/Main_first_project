@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/Header'
 import CharDisplayPrimary from './components/CharDisplayPrimary'
 import CharDisplaySecondary from './components/CharDisplaySecondary';
-
+import HealthBar from './components/HealthBar'
 import axios from 'axios';
 class App extends Component {
   constructor() {
@@ -13,7 +13,9 @@ class App extends Component {
       charactersTwo: [],
 
       i: 0,
-      iTwo: 0
+      iTwo: 0,
+
+
 
     };
 
@@ -69,17 +71,17 @@ class App extends Component {
   }
 
   handlePrev() {
-    if (this.state.iTwo > 0)  {
-      this.setState({ iTwo: this.state.iTwo - 1 });
-    } else if (this.state.iTwo === 0) {
-      this.setState({ iTwo: this.state.charactersTwo.length -1 })
+    if (this.state.i > 0)  {
+      this.setState({ i: this.state.i - 1 });
+    } else if (this.state.i === 0) {
+      this.setState({ i: this.state.characters.length -1 })
     }
   }
   handleNextTwo() {
-    if (this.state.i < (this.state.characters.length -1)) {
-      this.setState({ i: this.state.i + 1 });
-    } else if (this.state.i === this.state.characters.length -1) {
-      this.setState({ i: 0 })
+    if (this.state.iTwo < (this.state.charactersTwo.length -1)) {
+      this.setState({ iTwo: this.state.iTwo + 1 });
+    } else if (this.state.iTwo === this.state.charactersTwo.length -1) {
+      this.setState({ iTwo: 0 })
     }
   }
 
@@ -90,14 +92,17 @@ class App extends Component {
       this.setState({ iTwo: this.state.charactersTwo.length -1 })
     }
   }
+  
 
   render() {
+
     return (
       <div>
 
         <div className="App">
-          <Header />
+          <Header  />
           <CharDisplayPrimary  deleteHero={this.deleteHero} charactersTwo={this.state.charactersTwo} iTwo={this.state.iTwo} handleNextTwo={this.handleNextTwo} handlePrevTwo={this.handlePrevTwo} editHeroTwo={this.editHeroTwo} />
+          <HealthBar charactersTwo={this.state.charactersTwo} iTwo={this.state.iTwo}/>
           <CharDisplaySecondary deleteHero={this.deleteHero} characters={this.state.characters} handleNext={this.handleNext} handlePrev={this.handlePrev} i={this.state.i} />
         </div>
 

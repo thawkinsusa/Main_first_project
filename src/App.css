@@ -55,3 +55,21 @@ align-items:  center;
   background-color: rgba(255, 0, 0, 0.568);
 
 }
+progress {
+  text-align: center;
+  padding-bottom: 21px;
+  background-color: green;
+
+}
+progress:after {
+  content: attr(value)'';
+  color: red;
+}
+
+#attack {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+  
+}

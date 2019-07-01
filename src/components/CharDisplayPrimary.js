@@ -35,7 +35,7 @@ class CharDisplayPrimary extends Component {
             image: imgSrcTwo,
             armor: armorTwo,
             health: healthTwo,
-            damage:damageTwo,
+            attack:damageTwo,
             name: nameTwo
             
         }

@@ -5,6 +5,7 @@ import CharDisplayPrimary from './components/CharDisplayPrimary'
 import CharDisplaySecondary from './components/CharDisplaySecondary';
 import HealthBar from './components/HealthBar'
 import axios from 'axios';
+import Footer from './components/Footer'
 class App extends Component {
   constructor() {
     super()
@@ -105,10 +106,7 @@ class App extends Component {
           <HealthBar charactersTwo={this.state.charactersTwo} iTwo={this.state.iTwo}/>
           <CharDisplaySecondary deleteHero={this.deleteHero} characters={this.state.characters} handleNext={this.handleNext} handlePrev={this.handlePrev} i={this.state.i} />
         </div>
-
-        <body>
-
-        </body>
+        <Footer />
       </div>
     );
   }

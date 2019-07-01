@@ -1,6 +1,5 @@
 import React, {Component} from "react"
-import CharDisplayPrimary from './CharDisplayPrimary'
-class Animate extends CharDisplayPrimary {
+class Create extends  Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -13,4 +12,4 @@ class Animate extends CharDisplayPrimary {
         )
     }
 }
-export default Animate
+export default Create

@@ -73,3 +73,15 @@ progress:after {
   position: absolute;
   
 }
+
+.footer{
+  height: 10vh;
+  width: 100%;
+  background-color: rgba(27, 4, 4, 0);
+  top: 0;
+  color: white;
+  font-size: 100px;
+  font-weight: bold;
+  font-size: 30pt;
+  text-align: center;
+}
